@@ -1,0 +1,52 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@defstudio/vite-livewire-plugin": "^0.2.6",
+        "@tailwindcss/forms": "^0.5.3",
+        "@tailwindcss/line-clamp": "^0.4.2",
+        "@tailwindcss/typography": "^0.5.7",
+        "alpinejs": "^3.4.2",
+        "autoprefixer": "^10.4.2",
+        "axios": "^0.27",
+        "laravel-vite-plugin": "^0.6.0",
+        "lodash": "^4.17.19",
+        "postcss": "^8.4.6",
+        "tailwindcss": "^3.1.0",
+        "vite": "^3.0.0"
+    },
+    "dependencies": {
+        "@alpinejs/collapse": "^3.10.3",
+        "@alpinejs/focus": "^3.10.3",
+        "@milkdown/core": "^6.4.0",
+        "@milkdown/plugin-block": "^6.4.0",
+        "@milkdown/plugin-clipboard": "^6.4.0",
+        "@milkdown/plugin-cursor": "^6.4.0",
+        "@milkdown/plugin-diagram": "^6.4.0",
+        "@milkdown/plugin-emoji": "^6.4.0",
+        "@milkdown/plugin-history": "^6.4.0",
+        "@milkdown/plugin-indent": "^6.4.0",
+        "@milkdown/plugin-listener": "^6.4.0",
+        "@milkdown/plugin-math": "^6.4.0",
+        "@milkdown/plugin-menu": "^6.4.0",
+        "@milkdown/plugin-prism": "^6.4.0",
+        "@milkdown/plugin-slash": "^6.4.0",
+        "@milkdown/plugin-tooltip": "^6.4.0",
+        "@milkdown/plugin-trailing": "^6.4.0",
+        "@milkdown/preset-commonmark": "^6.4.0",
+        "@milkdown/preset-gfm": "^6.4.0",
+        "@milkdown/prose": "^6.4.1",
+        "@milkdown/theme-nord": "^6.4.0",
+        "@milkdown/utils": "^6.4.1",
+        "@ryangjchandler/alpine-clipboard": "^2.2.0",
+        "material-icons": "^1.11.11",
+        "milkdown-plugin-shiki": "^0.1.1",
+        "prism-themes": "^1.9.0",
+        "remark-directive": "^2.0.1",
+        "shiki": "^0.11.1",
+        "turbolinks": "^5.2.0"
+    }
+}
