@@ -130,9 +130,6 @@
                                     {{ \Carbon\Carbon::parse($user->created_at)->format('F  Y') }}</div>
                             </div>
                         </div>
-                        <div class="mt-3 ">
-                            <livewire:subscribe :user_id="$user->id" />
-                        </div>
                     </div>
                 </div>
             </header>

@@ -82,57 +82,11 @@
                                 </div>
                             </div>
                         @else
-                            {{-- @if ($blog->user_id == auth()->user()->id) --}}
                             <article class="w-full my-5">
                                 <x-markdown flavor="github" anchors theme="github-dark">
                                     {!! $blog->body() !!}
                                 </x-markdown>
                             </article>
-                            {{-- @else
-                                @if ($blog->user->isFollowing())
-                                    <article class="w-full my-5">
-                                        {!! $blog->body() !!}
-                                    </article>
-                                @else
-                                    <article class="w-full my-5">
-                                        {!! Str::words(strip_tags($blog->body()), 50) !!}
-                                    </article>
-                                    <div class="">
-                                        <div
-                                            class="flex flex-col items-center text-center justify-center px-8 py-16 mb-4 text-sm text-[#1f2833] leading-6 border not-prose  border-skin-200 bg-skin-50 rounded-xl dark:bg-[#fddfd8] ">
-                                            <h2 class="mb-8 text-2xl font-black md:text-3xl lg:text-4xl ">This Blog is for
-                                                followers only
-                                            </h2>
-                                            <p class="text-base">Follow the author now to read the blog and get access to the
-                                                full library of blogs
-                                                for followers only.</p>
-                                            <div class="">
-                                                <form method="post" id="follow-{{ $blog->user_id }}" class="follow">
-                                                    @csrf
-                                                    @method('put')
-                                                    <input type="hidden" name="follower_id" id="follower_id"
-                                                        value="{{ auth()->user()->id }}">
-                                                    <input type="hidden" name="user_id" id="user_id"
-                                                        value="{{ $blog->user_id }}">
-                                                    @if ($blog->user->isFollowing())
-                                                        <button type="submit"
-                                                            class="follow_button_{{ $blog->user_id }} my-4 inline-flex justify-center items-center font-medium rounded-lg text-sm px-5 py-2 text-center no-underline cursor-pointer whitespace-nowrap text-white bg-gradient-to-br from-skin-600 to-pink-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-skin-300 dark:focus:ring-skin-800">
-                                                            {{ svg('bi-person-check-fill', 'mr-2 -ml-1 w-5 h-5') }}
-                                                            {{ __('Following') }}
-                                                        </button>
-                                                    @else
-                                                        <button type="submit"
-                                                            class="follow_button_{{ $blog->user_id }} my-4 w-full inline-flex justify-center items-center font-medium rounded-lg text-sm px-5 py-2 text-center no-underline  cursor-pointer whitespace-nowrap text-white bg-gradient-to-br from-skin-600 to-pink-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-skin-300 dark:focus:ring-skin-800">
-                                                            {{ svg('bi-person-plus-fill', 'mr-2 -ml-1 w-5 h-5') }}
-                                                            {{ __('Follow') }}
-                                                        </button>
-                                                    @endif
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endif --}}
                         @endguest
                     @elseif($blog->access == 'public')
                         <article class="w-full my-5">
@@ -142,7 +96,6 @@
                         </article>
                     @endif
                 </div>
-                <livewire:comment :blog_id="$blog->id" :comments_count="$blog->comments->count()" :canComment="$blog->comment_access == 'enable' ? true : false" />
                 @if ($related->count() > 0)
                     <div>
                         <h2 class="flex flex-col items-center justify-center">
@@ -156,24 +109,22 @@
                         </h2>
 
                         <div class="not-prose">
-                        @foreach ($related as $sblog)
-                            <x-cards.blog-card :blog="$sblog"  />
-                        @endforeach</div>
+                            @foreach ($related as $sblog)
+                                <x-cards.blog-card :blog="$sblog" />
+                            @endforeach
+                        </div>
                     </div>
                 @endif
             </div>
             <aside class="my-2 overflow-hidden basis-1/3 lg:pl-5 lg:py-5">
 
                 <x-cards.primary-card :default=false>
-                    <div class="px-4 py-3 rounded-xl dark:bg-gray-800 ">
-                        <div class="grid grid-cols-4 gap-4 justify-between">
-                            <livewire:like-blog :blog_id="$blog->id" :likes_count="$blog->bloglikes->where('status', 1)->count()" :wire:key="$blog->id" />
-                            <div>
-                                <x-share :share="$shareBlog" />
-
-                            </div>
-                            <livewire:bookmark :blog_id="$blog->id" :wire:key="$blog->id" />
-                        </div>
+                    <header class="px-4 py-3 text-2xl font-semibold text-gray-700 dark:text-white">
+                        Share this post
+                    </header>
+                    <div
+                        class="px-4 py-3 text-gray-700 border-t border-gray-200 last:rounded-b-lg dark:text-gray-400 dark:hover:text-white dark:border-gray-700  hover:shadow dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <x-share :share="$shareBlog" />
                     </div>
                 </x-cards.primary-card>
                 <x-cards.primary-card :default=false>
@@ -193,7 +144,13 @@
                                 <x-avatar search="{{ $blog->user->emailAddress() }}" :src="$blog->user->avatarUrl()"
                                     class="h-10 w-10 bg-gray-50 rounded-full cursor-pointer" provider="gravatar" />
                                 <div class="ml-2 font-medium">
-                                    <div class="text-gray-900 dark:text-white">{{ $blog->user->username }} </div>
+                                    <div class="text-gray-900 dark:text-white">
+                                        <a class="font-bold text-gray-900 truncate dark:text-white user-popover"
+                                            href="/users/{{ $blog->user->username }}"
+                                            id="user{{ $blog->id }}-{{ $blog->user_id }}">
+                                            {{ __($blog->user->username) }}
+                                        </a>
+                                    </div>
                                     <div class="text-sm">Joined in
                                         {{ \Carbon\Carbon::parse($blog->user->created_at)->format('F Y') }}
                                     </div>
@@ -205,42 +162,6 @@
                                 {{ $blog->user->shortBio() }}
                             </x-markdown>
                         </div>
-                        <div class="w-full mt-3">
-                            <livewire:subscribe :user_id="$blog->user_id" />
-                        </div>
-                    </div>
-                </x-cards.primary-card>
-                <div class="badge-base LI-profile-badge my-4" data-locale="en_US" data-size="medium" data-theme="light"
-                    data-type="VERTICAL" data-vanity="tanmaya-arora" data-version="v1"><a
-                        class="badge-base__link LI-simple-link"
-                        href="https://www.linkedin.com/tanmaya-arora?trk=profile-badge"></a>
-                </div>
-                <x-cards.primary-card :default=false>
-                    <header class="px-4 py-3 text-2xl font-semibold text-gray-700 dark:text-white">
-                        <span class="modern-badge modern-badge-danger">#Advertisment</span>
-                    </header>
-                    <div
-                        class="px-4 py-3 text-gray-700 border-t border-gray-200 last:rounded-b-lg dark:text-gray-400 dark:hover:text-white dark:border-gray-700  hover:shadow dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <div class="relative  pt-[60%] w-full rounded-xl sm:pt-[50%] md:pt-[42%] ">
-                            <img class="absolute top-0 bottom-0 left-0 right-0 object-cover w-full h-full m-0 bg-skin-base shadow-md rounded-xl drop-shadow-md dark:bg-gray-800"
-                                src="https://picsum.photos/400/300" alt="" />
-                        </div>
-                    </div>
-                </x-cards.primary-card>
-                <x-cards.primary-card :default=false>
-                    <header class="px-4 py-3 text-2xl font-semibold text-gray-700 dark:text-white">
-                        <span>More From {{ $blog->user->username }}</span>
-                    </header>
-                    <div
-                        class="px-4 py-3 text-gray-700 border-t border-gray-200 last:rounded-b-lg dark:text-gray-400 dark:hover:text-white dark:border-gray-700 hover:shadow dark:bg-gray-800 dark:hover:bg-gray-700">
-                        First, why should you make any website faster?
-
-                        ✔️ Decrease bounce rate by 57% (as per study)
-                        ✔️ Increases google ranking
-                        ✔️ Happy Visitors/Customers
-
-                        let's check the steps 👇
-
                     </div>
                 </x-cards.primary-card>
             </aside>

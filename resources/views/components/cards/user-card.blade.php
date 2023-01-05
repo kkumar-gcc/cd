@@ -18,7 +18,6 @@
                 <div class="mb-3 md:hidden">
                     {{ $user->shortBio() }}
                 </div>
-                <livewire:subscribe :user_id="$user->id" wire:key="user-{{ $user->username() }}" />
             </div>
         </header>
         <div class="mt-3 hidden md:block">

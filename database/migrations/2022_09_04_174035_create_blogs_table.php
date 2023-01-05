@@ -26,6 +26,7 @@ return new class extends Migration
             $table->enum("access", ['public', 'private','subscriber'])->default('public');
             $table->enum("comment_access", ['enable', 'disable'])->default('enable');
             $table->boolean("adult_warning")->default(false);
+            $table->boolean("featured")->default(false);
             $table->boolean("age_confirmation")->default(false);
             $table->boolean("is_pinned")->default(false);
             $table->bigInteger("likes")->nullable();

@@ -122,12 +122,7 @@
                                 <span class="flex-1 ml-3 whitespace-nowrap">Pinned</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="/settings?tab=comments"
-                                class="flex items-center p-2  rounded-lg dark:text-white {{ $tab == 'comments' ? 'bg-gray-100 dark:bg-gray-700' : '' }} hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <span class="flex-1 ml-3 whitespace-nowrap">Comments</span>
-                            </a>
-                        </li>
+
                     </ul>
                 </div>
                 <div class="mt-4 lg:hidden">
@@ -176,10 +171,7 @@
                                     <span class="flex-1 ml-3 whitespace-nowrap">Pinned</span>
                                 </a>
                             </li>
-                            <li class="mr-2" role="presentation">
-                                <a class="inline-block p-4 rounded-t-lg border-b-4  {{ $tab == 'comments' ? 'text-skin-600  dark:text-skin-500  border-skin-600 dark:border-skin-500' : 'hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700' }}"
-                                    href="/settings?tab=comments" role="tab">Comments</a>
-                            </li>
+
 
                         </ul>
                     </div>
@@ -212,8 +204,6 @@
                     <div class="w-full">
                         <livewire:profile.pin-blog />
                     </div>
-                @elseif($tab == 'comments')
-                    @include('profile.private._comment', ['comments' => $comments])
                 @endif
             </div>
         </div>

@@ -36,15 +36,15 @@
     </style>
 </head>
 
-<body class="font-sans antialiased max-w-7xl mx-auto 2xl:shadow-lg 2xl:border-x theme-rose">
+<body class="font-sans antialiased 2xl:shadow-lg 2xl:border-x theme-rose">
 
     <div class="min-h-screen bg-skin-base">
         @include('layouts.navigation')
-        <!-- hiii -->
         <!-- Page Content -->
         <main class="w-full px-2 mt-2 text-gray-700 sm:px-6 sm:mt-6 md:px-20 md:mt-16 dark:text-gray-300">
             {{ $slot }}
         </main>
+        @include('layouts.footer')
     </div>
 
     @livewireScripts

@@ -1,12 +1,18 @@
-@props(['blog', 'private' => false, 'pin' => false])
+@props(['blog', 'private' => false, 'pin' => false, 'vertical' => false])
+
+@php
+    $classes = $vertical ? 'flex flex-col-reverse items-stretch justify-center p-4 sm:p-6' : 'flex flex-col-reverse items-stretch justify-center p-4 sm:p-6 sm:flex-row';
+@endphp
+
 <div
-    {{ $attributes->merge(['class' => 'border border-gray-200  relative  mt-8 first:mt-0 mt-3 w-full px-2 md:p-2.5 text-base text-left p-1  rounded-lg  font-normal shadow-sm hover:shadow-md']) }}>
-    <div class="flex flex-col-reverse items-stretch justify-center p-4 sm:p-6 sm:flex-row ">
+    {{ $attributes->merge(['class' => 'border border-gray-200  relative  mt-8  mt-3 w-full px-2 md:p-2.5 text-base text-left p-1  rounded-lg  font-normal shadow-sm hover:shadow-md']) }} class="{{ $vertical ? "":"first:mt-0" }}">
+
+    <div {{ $attributes->merge(['class' => $classes]) }}>
         <div class="basis-2/3 mt-2 relative leading-normal sm:mt-0 sm:pr-4">
             <div class="flex flex-row mt-3 mb-1 md:mt-0">
                 <div class="flex-1 flex flex-row items-center">
                     <div class="mr-2 text-sm">
-                        {{ $blog->bloglikes->where('status', 1)->count() }} <span>likes</span>
+                        {{ $blog->readTime() }} <span>mins read</span>
                     </div>
                     <div class="mr-2 text-sm">
                         {{ $blog->blogviews->count() }} <span>views</span>
@@ -59,9 +65,11 @@
                 </h5>
             </a>
             {{-- <p>{{ $blog->excerpt(50) }}</p> --}}
-            @foreach ($blog->tags as $tag)
-                <x-tag :tag=$tag id="tag{{ $blog->id }}-{{ $tag->id }}" />
-            @endforeach
+            <div class="w-full max-w-full overflow-hidden">
+                @foreach ($blog->tags as $tag)
+                    <x-tag :tag=$tag id="tag{{ $blog->id }}-{{ $tag->id }}" />
+                @endforeach
+            </div>
             <p class="mt-3">
                 <span class="mr-1">by </span>
                 <a class="text-sm font-bold text-gray-900 truncate dark:text-white user-popover"
@@ -76,9 +84,9 @@
         </div>
         <div
             class="basis-1/3 relative text-center min-h-fit {{ $blog->adult_warning ? 'prose prose-img:blur-lg' : '' }}">
-            <img class="block relative w-full h-full rounded-xl  object-cover shadow-md hover:shadow-sm sm:absolute sm:top-0 sm:left-0 "
+            <img class="block relative w-full h-full rounded-xl  object-cover shadow-md hover:shadow-sm {{ $vertical ? 'min-h-[192px] mb-2' : 'sm:absolute sm:top-0 sm:left-0' }}"
                 src="{{ $blog->coverImage() }}" alt="">
-                {{-- https://miro.medium.com/max/1000/1*xRj13VgftcCYP2ppVFmGTw.png --}}
+            {{-- https://miro.medium.com/max/1000/1*xRj13VgftcCYP2ppVFmGTw.png --}}
         </div>
     </div>
 </div>

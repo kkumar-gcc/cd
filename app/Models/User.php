@@ -134,26 +134,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(BlogPin::class);
     }
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
-    public function replies()
-    {
-        return $this->hasMany(Reply::class);
-    }
-    public function commentlikes()
-    {
-        return $this->hasMany(CommentLike::class);
-    }
-    public function replylikes()
-    {
-        return $this->hasMany(ReplyLike::class);
-    }
-    public function bloglikes()
-    {
-        return $this->hasMany(BlogLike::class);
-    }
+    
 
     // public function followings()
     // {
@@ -168,19 +149,7 @@ class User extends Authenticatable implements MustVerifyEmail
     // {
     //     return $this->followers()->where('follower_id', '=', auth()->user()->id)->exists();
     // }
-    public function followings()
-    {
-        return $this->belongsToMany(User::class, 'subscribers', 'subscriber_id', 'user_id');
-    }
-    // users that follow this user
-    public function subscribers()
-    {
-        return $this->belongsToMany(User::class, 'subscribers', 'user_id', 'subscriber_id');
-    }
-    public function isSubscriber()
-    {
-        return $this->subscribers()->where('user_id', '=', auth()->user()->id)->exists();
-    }
+
     public function backgroundImage(): string
     {
         return $this->background_image

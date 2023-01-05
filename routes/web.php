@@ -4,8 +4,7 @@ use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrivateProfileController;
 use App\Http\Controllers\PublicProfileController;
 use App\Http\Controllers\TagController;
@@ -25,9 +24,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/',[HomeController::class,'home'])->name('home');
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -44,25 +41,24 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::post('/comment', [CommentController::class, 'store']);
-    Route::post('/reply/{id}', [CommentController::class, 'store']);
     Route::get("/settings", [PrivateProfileController::class, 'index']);
     Route::put("/settings/social-links", [PrivateProfileController::class, 'social']);
     Route::post("/profile/update", [PrivateProfileController::class, 'store']);
-    Route::put("/user/password/update", [UserController::class, 'resetPassword']);
 
     Route::get("/new-blog", [BlogController::class, 'create'])->name("new-blog");
     Route::get("/blogs/edit/{slug}", [BlogController::class, 'edit']);
     Route::put("/blogs/edit", [BlogController::class, 'editStore'])->name('blogs.edit');
     Route::get("/blogs/manage/{slug}", [BlogController::class, 'manage']);
     Route::get("/blogs/stats/{slug}", [BlogController::class, 'stats']);
-    Route::get("/notifications",[NotificationController::class,"index"]);
+
+    Route::get("/users", [UserController::class, 'index'])->name('users');
+    Route::put("/user/password/update", [UserController::class, 'resetPassword']);
 });
 Route::middleware(['auth','verified','admin'])->name('admin.')->prefix('admin')->group(function(){
    Route::get('/',[IndexController::class,'index']);
@@ -76,7 +72,6 @@ Route::get("/blogs", [BlogController::class, 'index'])->name('blogs');
 Route::get("/blogs/{slug}", [BlogController::class, 'show']);
 Route::get("blogs/tagged/{slug}", [BlogController::class, "tagSearch"]);
 Route::get("/tags", [TagController::class, 'index'])->name('tags');
-Route::get("/users", [UserController::class, 'index'])->name('users');
 Route::get("users/{username}", [PublicProfileController::class, 'index']);
 
 require __DIR__ . '/auth.php';

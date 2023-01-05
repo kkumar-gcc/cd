@@ -1,12 +1,5 @@
 <div class="flex justify-center">
-    @guest
-        <x-buttons.simple wire:click.prevent="bookmark()" :default=false
-            class="hover:bg-skin-50 hover:text-skin-500  focus:ring-skin-100">
-            <span title="Bookmark this Article">
-                {{ svg('iconsax-out-archive-tick', 'h-6 w-6') }}
-            </span>
-        </x-buttons.simple>
-    @else
+    @auth
         <x-buttons.simple wire:click.prevent="bookmark()" :default=false
             class="hover:bg-skin-50 hover:text-skin-500  focus:ring-skin-100">
             <span title="Bookmark this Article">
@@ -40,6 +33,6 @@
                 </div>
             </div>
         </div>
-    @endguest
+    @endauth
 
 </div>

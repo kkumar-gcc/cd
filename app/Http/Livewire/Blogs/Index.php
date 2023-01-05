@@ -34,7 +34,7 @@ class Index extends Component
     {
         return in_array($sort, [
             'recent',
-            'popular',
+            'featured',
             'view'
         ]);
     }

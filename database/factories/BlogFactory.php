@@ -22,6 +22,7 @@ class BlogFactory extends Factory
             'title'=>$title,
             'body'=>$this->faker->realText(),
             'published'=>$this->faker->boolean(),
+            'featured'=>$this->faker->boolean(),
             'slug'=> SlugService::createSlug(Blog::class, 'slug', $title),
         ];
     }

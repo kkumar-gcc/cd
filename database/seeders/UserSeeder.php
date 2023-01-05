@@ -59,18 +59,6 @@ class UserSeeder extends Seeder
                                     'updated_at' => now(),
                                 ]);
                         }
-                        Comment::factory()->count(rand(1, 30))->create(
-                            [
-                                "blog_id" => $blog->id
-                            ]
-                        )
-                            ->each(function ($comment) {
-                                Reply::factory()->count(rand(0, 3))->create(
-                                    [
-                                        "comment_id" => $comment->id
-                                    ]
-                                );
-                            });
                     });
             });
     }

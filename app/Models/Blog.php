@@ -95,14 +95,7 @@ class Blog extends Model
     {
         return $this->hasMany(BlogPin::class);
     }
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
-    public function bloglikes()
-    {
-        return $this->hasMany(BlogLike::class);
-    }
+
     public function blogviews()
     {
         return $this->hasMany(BlogView::class);
@@ -114,7 +107,7 @@ class Blog extends Model
     public function scopeFilter($query)
     {
         // if($filters['query'] ?? false){
-        $query->published()->with(['user', 'tags', 'bloglikes', 'blogviews']);
+        $query->published()->with(['user', 'tags', 'blogviews']);
         // }
 
     }
@@ -146,7 +139,7 @@ class Blog extends Model
     }
     public function scopePopular($query): Builder
     {
-        return $query->withCount(['bloglikes'])->orderByDesc('bloglikes_count');
+        return $query;
     }
     public function scopeView($query): Builder
     {

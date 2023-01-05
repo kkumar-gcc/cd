@@ -63,7 +63,6 @@ class Create extends Component
             }
         };
         $blog->tags()->sync($tagIds);
-        BlogWasCreated::dispatch($blog);
         givePoint(new BlogCreated($blog));
         return redirect()->to('/blogs/' . $blog->slug);
     }
