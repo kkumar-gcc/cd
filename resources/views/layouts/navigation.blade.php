@@ -42,27 +42,7 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden lg:flex sm:items-center sm:ml-6">
-                <div>
-                    <x-modals.full modal="searchModal">
-                        <x-slot:header>
-                            search
-                        </x-slot:header>
-                        <x-slot:title>
-                            <button x-on:click="searchModal = true">
-                                <div x-on:click="searchModal = true"
-                                    class="w-56 border inline-flex justify-between relative items-center py-2.5 px-3 rounded-lg shadow-sm  text-center text-base font-medium leading-5 text-gray-600 ">
-                                    <span>Search....</span>
-                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg"
-                                        fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z">
-                                        </path>
-                                    </svg>
-                                </div>
-                            </button>
-                        </x-slot:title>
-                    </x-modals.full>
-                </div>
+                <livewire:search />
 
                 @auth
                     @can('create blogs')
@@ -111,30 +91,9 @@
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center lg:hidden">
-                <div>
-                    <x-modals.full modal="searchModal">
-                        <x-slot:header>
-                            search
-                        </x-slot:header>
-                        <x-slot:title>
-                            <button x-on:click="searchModal = true">
-                                <div x-on:click="searchModal = true"
-                                    class="w-56 border inline-flex justify-between relative items-center py-2.5 px-3 rounded-lg  text-center text-base font-medium leading-5 text-gray-600 ">
-                                    <span>Search....</span>
-                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg"
-                                        fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z">
-                                        </path>
-                                    </svg>
-                                </div>
-                            </button>
-                        </x-slot:title>
-                    </x-modals.full>
-                </div>
-
+                <livewire:search />
                 <button @click="open = ! open"
-                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                    class="ml-3 inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

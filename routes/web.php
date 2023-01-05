@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrivateProfileController;
 use App\Http\Controllers\PublicProfileController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -79,5 +80,6 @@ Route::get("/blogs/{slug}", [BlogController::class, 'show']);
 Route::get("/blogs/tagged/{slug}", [BlogController::class,"tagSearch"]);
 Route::get("/tags", [TagController::class, 'index'])->name('tags');
 Route::get("users/{username}", [PublicProfileController::class, 'index']);
+Route::get("/search", [SearchController::class, 'index'])->name('search');
 
 require __DIR__ . '/auth.php';

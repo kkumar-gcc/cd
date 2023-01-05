@@ -9,42 +9,42 @@
                     <div class="flex flex-wrap mb-4">
                         @if ($user->twitter_url)
                             <a class="mr-3 mb-3" href="{{ $user->twitter_url }}">
-                               {{ svg('bi-twitter','h-6 w-6 text-[#1DA1F2]') }}
+                                {{ svg('bi-twitter', 'h-6 w-6 text-[#1DA1F2]') }}
                             </a>
                         @endif
                         @if ($user->facebook_url)
                             <a class="mr-3 mb-3" href="{{ $user->facebook_url }}">
-                                {{ svg('bi-facebook','h-6 w-6 text-[#4267B2]') }}
+                                {{ svg('bi-facebook', 'h-6 w-6 text-[#4267B2]') }}
                             </a>
                         @endif
                         @if ($user->linkedin_url)
                             <a class="mr-3 mb-3" href="{{ $user->linkedin_url }}">
-                                {{ svg('bi-linkedin','h-6 w-6 text-[#0077B5]') }}
+                                {{ svg('bi-linkedin', 'h-6 w-6 text-[#0077B5]') }}
                             </a>
                         @endif
                         @if ($user->stackoverflow_url)
                             <a class="mr-3 mb-3" href="{{ $user->stackoverflow_url }}">
-                                {{ svg('bi-stack-overflow','h-6 w-6 text-[#FF0000]') }}
+                                {{ svg('bi-stack-overflow', 'h-6 w-6 text-[#FF0000]') }}
                             </a>
                         @endif
                         @if ($user->reddit_url)
                             <a class="mr-3 mb-3" href="{{ $user->reddit_url }}">
-                               {{ svg('bi-reddit','h-6 w-6 text-[#FF4500]') }}
+                                {{ svg('bi-reddit', 'h-6 w-6 text-[#FF4500]') }}
                             </a>
                         @endif
                         @if ($user->instagram_url)
                             <a class="mr-3 mb-3" href="{{ $user->instagram_url }}">
-                                {{ svg('iconsax-out-instagram','h-6 w-6 text-[#e95950]') }}
+                                {{ svg('iconsax-out-instagram', 'h-6 w-6 text-[#e95950]') }}
                             </a>
                         @endif
                         @if ($user->youtube_url)
                             <a class="mr-3 mb-3" href="{{ $user->youtube_url }}">
-                                {{ svg('bi-youtube','h-6 w-6 text-[#FF0000]') }}
+                                {{ svg('bi-youtube', 'h-6 w-6 text-[#FF0000]') }}
                             </a>
                         @endif
                         @if ($user->quora_url)
                             <a class="mr-3 mb-3" href="{{ $user->quora_url }}">
-                                {{ svg('bi-quora','h-6 w-6 text-[#FF0000]') }}
+                                {{ svg('bi-quora', 'h-6 w-6 text-[#FF0000]') }}
                             </a>
                         @endif
                         {{-- @if ($user->laracasts_url)
@@ -55,17 +55,17 @@
                         @endif --}}
                         @if ($user->github_url)
                             <a class="mr-3 mb-3" href="{{ $user->github_url }}">
-                                {{ svg('bi-github','h-6 w-6') }}
+                                {{ svg('bi-github', 'h-6 w-6') }}
                             </a>
                         @endif
                         @if ($user->medium_url)
                             <a class="mr-3 mb-3" href="{{ $user->medium_url }}">
-                                {{ svg('bi-medium','h-6 w-6') }}
+                                {{ svg('bi-medium', 'h-6 w-6') }}
                             </a>
                         @endif
                         @if ($user->codepen_url)
                             <a class="mr-3 mb-3" href="{{ $user->codepen_url }}">
-                                {{ svg('iconsax-out-3d-cube-scan','h-6 w-6') }}
+                                {{ svg('iconsax-out-3d-cube-scan', 'h-6 w-6') }}
                             </a>
                         @endif
                     </div>
@@ -149,6 +149,11 @@
                             href="{{ $user->username }}?tab=bookmarks#details" role="tab">Bookmarks
                         </a>
                     </li>
+                    <li class="mr-2" role="presentation">
+                        <a class="inline-block p-4 rounded-t-lg border-b-4  {{ $tab == 'archives' ? 'text-skin-600 dark:text-skin-500  border-skin-600 dark:border-skin-500' : 'hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700 dark:hover:border-gray-300' }}"
+                            href="{{ $user->username }}?tab=archives#details" role="tab">Archives
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="my-4">
@@ -158,8 +163,8 @@
                     @include('profile.public._blog', ['pins' => $pins, 'blogs' => $blogs])
                 @elseif($tab == 'bookmarks')
                     @include('profile.public._bookmark', ['bookmarks' => $bookmarks])
-                    {{-- @elseif ($tab == 'activity')
-                @include('profile.public.partials.activityTab', ['user' => $user]) --}}
+                @elseif ($tab == 'archives')
+                    @include('profile.public._archives', ['archives' => $archives])
                 @endif
             </div>
         </section>

@@ -16,13 +16,14 @@
                 <a class="inline-block p-4 rounded-t-lg  cursor-pointer border-b-4  {{ $tab == 'recent' ? 'text-skin-600  border-skin-600' : 'hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700' }}"
                     wire:click="sortBy('recent')" role="tab">Recent</a>
             </li>
-            <li class="mr-2" role="presentation">
-                <a class="inline-block p-4 rounded-t-lg cursor-pointer border-b-4 {{ $tab == 'popular' ? 'text-skin-600  dark:text-skin-500  border-skin-600 dark:border-skin-500' : 'hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700' }}"
-                    wire:click="sortBy('popular')" role="tab">Popular</a>
-            </li>
+
             <li class="mr-2" role="presentation">
                 <a class="inline-block p-4 rounded-t-lg  cursor-pointer border-b-4 {{ $tab == 'view' ? 'text-skin-600  dark:text-skin-500  border-skin-600 dark:border-skin-500' : 'hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700' }}"
                     wire:click="sortBy('view')" role="tab">Top Viewed</a>
+            </li>
+            <li class="mr-2" role="presentation">
+                <a class="inline-block p-4 rounded-t-lg cursor-pointer border-b-4 {{ $tab == 'featured' ? 'text-skin-600  dark:text-skin-500  border-skin-600 dark:border-skin-500' : 'hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700' }}"
+                    wire:click="sortBy('featured')" role="tab">Featured</a>
             </li>
         </ul>
     </div>

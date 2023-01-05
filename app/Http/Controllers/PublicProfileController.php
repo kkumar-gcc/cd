@@ -7,8 +7,10 @@ use App\Models\BlogPin;
 use App\Models\Bookmark;
 use App\Models\Friendship;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PublicProfileController extends Controller
 {
@@ -27,7 +29,7 @@ class PublicProfileController extends Controller
             if ($request->tab == 'blogs') {
                 $tab = 'blogs';
                 $pins = BlogPin::where("user_id", "=", $id)->get();
-                $blogs = Blog::with('user','tags')->where([["user_id", "=", $id],["is_pinned", "=", false]])->published()->paginate(5);
+                $blogs = Blog::with('user', 'tags')->where([["user_id", "=", $id], ["is_pinned", "=", false]])->published()->paginate(5);
                 return view("profile.public.index")->with([
                     "user" => $user,
                     "pins" => $pins,
@@ -42,11 +44,17 @@ class PublicProfileController extends Controller
                     "bookmarks" => $bookmarks,
                     "tab" => $tab
                 ]);
-            } else if ($request->tab == 'activity') {
-                $tab = 'activity';
+            } else if ($request->tab == 'archives') {
+                $tab = 'archives';
+
+                $archives = Blog::where("user_id", "=", $id)->published()->with('user', 'tags','blogViews')->orderBy('created_at')->get()->groupBy(function ($d) {
+                    return Carbon::parse($d->created_at)->format('Y');
+                });
+                
                 return view("profile.public.index")->with([
                     "user" => $user,
-                    "tab" => $tab
+                    "tab" => $tab,
+                    "archives" => $archives
                 ]);
             } else if ($request->tab == "about") {
                 $tab = "about";

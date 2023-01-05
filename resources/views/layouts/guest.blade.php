@@ -14,16 +14,14 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased  2xl:shadow-lg 2xl:border-x theme-rose">
+<body class="font-sans antialiased bg-skin-base 2xl:shadow-lg 2xl:border-x theme-rose min-h-screen flex flex-col">
 
-    <div class="min-h-screen bg-skin-base">
-        @include('layouts.navigation')
-        <!-- Page Content -->
-        <main class="w-full mt-2 text-gray-700  sm:mt-6 md:mt-16  max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {{ $slot }}
-        </main>
-        @include('layouts.footer')
-    </div>
+    @include('layouts.navigation')
+    <!-- Page Content -->
+    <main class="flex-1 w-full mt-2 text-gray-700  sm:mt-6 md:mt-16  max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{ $slot }}
+    </main>
+    @include('layouts.footer')
 
     @livewireScripts
     @stack('scripts')

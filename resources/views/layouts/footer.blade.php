@@ -1,5 +1,5 @@
 
-<footer class="p-4 border-t bg-white sm:p-6 ">
+<footer class="p-4 border-t bg-white sm:p-6">
     <div>
         <div class="shrink-0 flex items-center justify-center flex-col">
             <div class="shrink-0 flex items-center justify-center p-4">
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-col justify-center md:flex-row md:justify-between mt-8 md:mt-12 md:mb-4">
+        <div class="flex flex-col justify-center md:flex-row md:justify-between mt-8 md:mt-12">
                 <livewire:subscribe />
             <div>
                 <h5 class="py-3 text-base font-semibold text-gray-700 tracking-wide flex flex-row items-center">

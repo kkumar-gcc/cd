@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->string("slug")->nullable();
             $table->string('cover_image')->nullable();
-            $table->text('body');
+            $table->text('body')->fulltext();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
             $table->boolean('published')->default(true);

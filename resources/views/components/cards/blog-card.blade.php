@@ -84,7 +84,7 @@
         </div>
         <div
             class="basis-1/3 relative text-center min-h-fit {{ $blog->adult_warning ? 'prose prose-img:blur-lg' : '' }}">
-            <img class="block relative w-full h-full rounded-xl  object-cover shadow-md hover:shadow-sm {{ $vertical ? 'min-h-[192px] mb-2' : 'sm:absolute sm:top-0 sm:left-0' }}"
+            <img class="block relative w-full min-h-[192px]  rounded-xl  object-cover shadow-md hover:shadow-sm {{ $vertical ? 'min-h-[192px]  mb-2' : 'sm:absolute sm:top-0 sm:left-0 sm:min-h-full' }}"
                 src="{{ $blog->coverImage() }}" alt="">
             {{-- https://miro.medium.com/max/1000/1*xRj13VgftcCYP2ppVFmGTw.png --}}
         </div>

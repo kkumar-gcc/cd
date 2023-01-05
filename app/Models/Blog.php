@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Search;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -16,7 +17,7 @@ use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class Blog extends Model
 {
-    use HasFactory, SoftDeletes, Sluggable, HasSEO;
+    use HasFactory, SoftDeletes,Search, Sluggable, HasSEO;
     protected $fillable = [
         'user_id',
         'title',
@@ -25,6 +26,13 @@ class Blog extends Model
         'meta_description',
         'meta_title',
         "published",
+        'slug'
+    ];
+    protected $searchable = [
+        'title',
+        'body',
+        'meta_description',
+        'meta_title',
         'slug'
     ];
     public function title(): string
@@ -70,14 +78,6 @@ class Blog extends Model
         ? Storage::disk('images')->url($this->cover_image)
         : 'https://live.staticflickr.com/65535/52390100407_ac668fab12_h.jpg';
     }
-    // public function toFeedItem():FeedItem{
-    //     return FeedItem::create()
-    //     ->id($this->id())
-    //     ->title($this->title())
-    //     ->summary($this->updatedAt())
-    //     ->link(route('articles.show',$this->slug()))
-    //     ->authorName($this->author()->name());
-    // }
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -106,12 +106,8 @@ class Blog extends Model
     }
     public function scopeFilter($query)
     {
-        // if($filters['query'] ?? false){
         $query->published()->with(['user', 'tags', 'blogviews']);
-        // }
-
     }
-    // public function scopeTag(Builder $query)
     public function scopeFeatured($query): Builder
     {
         return $query->where('featured', true);
@@ -125,10 +121,7 @@ class Blog extends Model
     {
         return $query->where('published', 0);
     }
-    // public function scopePublished($query): Builder
-    // {
-    //      return $query->where([['status','posted'],['access',"!=","private"]]);
-    // }
+
     public function scopeRecentAsc($query): Builder
     {
         return $query->orderBy('title', 'asc');
@@ -146,10 +139,6 @@ class Blog extends Model
         return $query->withCount('blogviews')->orderByDesc('blogviews_count');
     }
 
-    // public function isPinned()
-    // {
-    //     return $this->blogpins()->where('user_id','=', auth()->user()->id)->exists();
-    // }
     public function sluggable(): array
     {
         return [
@@ -162,6 +151,7 @@ class Blog extends Model
     {
         return new SEOData(
             title: $this->title,
+            image: $this->coverImage(),
             description: $this->excerpt(),
             author: $this->user->username,
         );

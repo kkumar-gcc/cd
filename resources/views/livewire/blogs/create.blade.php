@@ -48,7 +48,6 @@
                             </article>
                         </div>
                     </div>
-
                 </x-modals.full>
 
             </div>
