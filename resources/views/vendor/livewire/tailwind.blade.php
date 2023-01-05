@@ -1,4 +1,4 @@
-<div>
+<div class="mb-8">
     @if ($paginator->hasPages())
         <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}"
             class="flex items-center justify-between my-4 not-prose">

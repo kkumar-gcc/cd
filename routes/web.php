@@ -45,6 +45,12 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get("/settings", [PrivateProfileController::class, 'index']);
@@ -70,7 +76,7 @@ Route::middleware(['auth','verified','admin'])->name('admin.')->prefix('admin')-
 
 Route::get("/blogs", [BlogController::class, 'index'])->name('blogs');
 Route::get("/blogs/{slug}", [BlogController::class, 'show']);
-Route::get("blogs/tagged/{slug}", [BlogController::class, "tagSearch"]);
+Route::get("/blogs/tagged/{slug}", [BlogController::class,"tagSearch"]);
 Route::get("/tags", [TagController::class, 'index'])->name('tags');
 Route::get("users/{username}", [PublicProfileController::class, 'index']);
 
