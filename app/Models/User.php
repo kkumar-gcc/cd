@@ -17,7 +17,7 @@ use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasSEO,Gamify;
+    use HasApiTokens,Notifiable,HasFactory, HasRoles, HasSEO,Gamify;
 
     /**
      * The attributes that are mass assignable.
@@ -134,7 +134,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(BlogPin::class);
     }
-    
+
 
     // public function followings()
     // {

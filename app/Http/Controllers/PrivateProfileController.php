@@ -67,35 +67,10 @@ class PrivateProfileController extends Controller
                 "bookmarks" => $bookmarks,
                 "tab" => $tab
             ]);
-        } else if ($request->tab == 'follower') {
-            $tab = 'follower';
-            $subscribers =$user->subscribers()->paginate(5);
-            return view("profile.private.index")->with([
-                "user" =>  $user,
-                "followers" => $subscribers,
-                "tab" => $tab
-            ]);
-        } else if ($request->tab == 'following') {
-            $tab = 'following';
-            $followings = $user->followings()->paginate(5);
-            return view("profile.private.index")->with([
-                "user" =>  $user,
-                "followings" => $followings,
-                "tab" => $tab
-            ]);
         } else if ($request->tab == 'pins') {
             $tab = 'pins';return view("profile.private.index")->with([
                 "user" =>  $user,
                 "tab" => $tab,
-            ]);
-        } else if ($request->tab == 'comments') {
-            $tab = 'comments';
-            $comments = Comment::where('user_id', '=', Auth()->user()->id)->orderBy('created_at','DESC')->paginate(20);
-            // ->paginate(5);
-            return view("profile.private.index")->with([
-                "user" =>  $user,
-                "comments" => $comments,
-                "tab" => $tab
             ]);
         } else if ($request->tab == "about") {
             $tab = "about";

@@ -105,18 +105,6 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/settings?tab=follower"
-                                class="flex items-center p-2  rounded-lg dark:text-white {{ $tab == 'follower' ? 'bg-gray-100 dark:bg-gray-700' : '' }} hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <span class="flex-1 ml-3 whitespace-nowrap">Follower</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/settings?tab=following"
-                                class="flex items-center p-2  rounded-lg dark:text-white {{ $tab == 'following' ? 'bg-gray-100 dark:bg-gray-700' : '' }} hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <span class="flex-1 ml-3 whitespace-nowrap">Following</span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="/settings?tab=pins"
                                 class="flex items-center p-2  rounded-lg dark:text-white {{ $tab == 'pins' ? 'bg-gray-100 dark:bg-gray-700' : '' }} hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <span class="flex-1 ml-3 whitespace-nowrap">Pinned</span>
@@ -157,14 +145,6 @@
                                 <a class="inline-block p-4 rounded-t-lg border-b-4  {{ $tab == 'bookmarks' ? 'text-skin-600  dark:text-skin-500  border-skin-600 dark:border-skin-500' : 'hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700' }}"
                                     href="/settings?tab=bookmarks" role="tab">Bookmarks</a>
                             </li>
-                            <li class="mr-2" role="presentation">
-                                <a class="inline-block p-4 rounded-t-lg border-b-4  {{ $tab == 'follower' ? 'text-skin-600  dark:text-skin-500  border-skin-600 dark:border-skin-500' : 'hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700' }}"
-                                    href="/settings?tab=follower" role="tab">Follower</a>
-                            </li>
-                            <li class="mr-2" role="presentation">
-                                <a class="inline-block p-4 rounded-t-lg border-b-4  {{ $tab == 'following' ? 'text-skin-600  dark:text-skin-500  border-skin-600 dark:border-skin-500' : 'hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700' }}"
-                                    href="/settings?tab=following" role="tab">Following</a>
-                            </li>
                             <li>
                                 <a href="/settings?tab=pins"
                                     class="inline-block p-4 rounded-t-lg border-b-4  {{ $tab == 'pins' ? 'text-skin-600  dark:text-skin-500  border-skin-600' : '' }} hover:bg-gray-100 ">
@@ -196,10 +176,6 @@
                     @include('profile.private._draft', ['drafts' => $drafts])
                 @elseif($tab == 'bookmarks')
                     @include('profile.private._bookmark', ['bookmarks' => $bookmarks])
-                @elseif($tab == 'follower')
-                    @include('profile.private._follower', ['followers' => $followers])
-                @elseif($tab == 'following')
-                    @include('profile.private._following', ['followings' => $followings])
                 @elseif ($tab == 'pins')
                     <div class="w-full">
                         <livewire:profile.pin-blog />

@@ -27,7 +27,6 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Comment::class => CommentPolicy::class,
         Reply::class => ReplyPolicy::class,
-        Notification::class => NotificationPolicy::class,
         Tag::class => TagPolicy::class,
     ];
     /**
