@@ -16,6 +16,7 @@ class Manage extends Component
     public $blog_access;
     public $adult_warning;
     public $age_confirmation;
+    public $featured;
     public function mount(Blog $blog)
     {
         $this->blog = $blog;
@@ -23,6 +24,7 @@ class Manage extends Component
         $this->blog_access = $blog->access;
         $this->adult_warning = $blog->adult_warning;
         $this->age_confirmation = $blog->age_confirmation;
+        $this->featured=$blog->featured;
     }
     public function render()
     {
@@ -39,6 +41,7 @@ class Manage extends Component
         $this->blog->comment_access = $this->comment_access;
         $this->blog->adult_warning = $this->adult_warning;
         $this->blog->age_confirmation = $this->age_confirmation;
+        $this->blog->featured=$this->featured;
         $saved = $this->blog->save();
         if ($saved) {
             $this->emit('changed');

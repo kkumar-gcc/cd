@@ -136,7 +136,7 @@
                         for="short_bio">Short
                         Bio</label>
                     <textarea id="short_bio"
-                        class="border border-gray-300 text-gray-600 text-base font-semibold focus:shadow-md focus:ring-4 focus:ring-skin-500/20 focus:border-skin-600 block w-full p-3.5
+                        class="border border-gray-300 text-gray-600 text-base font-semibold focus:shadow-md focus:ring-4 focus:ring-skin-500/20 focus:border-skin-600 block w-full p-3.5"
                         maxlength="200"
                         rows="4" wire:model="shortBio">{{ old('short_bio', $user->short_bio ?? '') }}</textarea>
                     <x-error field="shortBio" />

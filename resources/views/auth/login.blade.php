@@ -1,11 +1,5 @@
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -47,9 +41,9 @@
                     </a>
                 @endif
 
-                <x-button class="ml-3">
+                <x-buttons.secondary type="submit" class="ml-3">
                     {{ __('Log in') }}
-                </x-button>
+                </x-buttons.secondary>
             </div>
         </form>
     </x-auth-card>

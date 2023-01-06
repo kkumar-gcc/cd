@@ -6,7 +6,7 @@
         <x-slot:title>
             <button x-on:click="searchModal = true">
                 <div x-on:click="searchModal = true"
-                    class="w-48 md:w-56 border inline-flex justify-between relative items-center py-2.5 px-3 rounded-lg  text-center text-base font-medium leading-5 text-gray-600 ">
+                    class="w-48 md:w-56 border inline-flex justify-between relative items-center py-2.5 px-3 shadow-sm rounded-lg  text-center text-base font-medium leading-5 text-gray-600 ">
                     <span>Search....</span>
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"

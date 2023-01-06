@@ -95,6 +95,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="mb-6">
+                        <label for="general_comment"
+                            class="text-xl font-semibold line-clamp-3  tracking-wide  block mb-4  text-gray-700">Other</label>
+                        <div class="">
+                            <div class="w-full mt-2">
+                                <label class="inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4" wire:model="featured" />
+                                    <span class="ml-2">Featured</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <x-buttons.secondary type="submit">Save</x-buttons.secondary>
                 </form>
             </div>

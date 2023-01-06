@@ -11,11 +11,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use Jorenvh\Share\ShareFacade;
+
 class BlogController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show','tagSearch']);
+        $this->middleware('auth')->except(['index', 'show', 'tagSearch']);
     }
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $this->authorize('create',Blog::class);
+        $this->authorize('create', Blog::class);
         return view("blogs.create");
     }
 
@@ -67,14 +68,21 @@ class BlogController extends Controller
                 $newView->blog_id = $blog->id;
                 $newView->save();
             }
-            $related = Blog::published()->with(['user', 'tags', 'blogviews'])->whereHas('tags', function ($query) use ($blog) {
-                $query->whereIn('title', $blog->tags->pluck('title'));
-            }, '>=', count($blog->tags->pluck('title')))->where("id", "!=", $blog->id)->limit(5)->withCount('tags')
+
+            $related = Blog::published()
+                ->with(['user', 'tags', 'blogviews'])
+                ->whereHas('tags', function ($query) use ($blog) {
+                    $query->whereIn('title', $blog->tags->pluck('title'));
+                }, '>=', count($blog->tags->pluck('title')))
+                ->where("id", "!=", $blog->id)
+                ->limit(5)
+                ->withCount('tags')
                 ->get();
+
             return view("blogs.show")->with([
                 "blog" => $blog,
                 "related" => $related,
-                "shareBlog"=>$shareBlog,
+                "shareBlog" => $shareBlog,
             ]);
         }
         return abort(404);;

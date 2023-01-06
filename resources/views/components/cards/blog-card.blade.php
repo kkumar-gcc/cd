@@ -1,12 +1,13 @@
 @props(['blog', 'private' => false, 'pin' => false, 'vertical' => false])
 
 @php
+    $featuredClass =$blog->featured ? 'border-2 border-skin-500 bg-skin-50':'border border-gray-200';
     $classes = $vertical ? 'flex flex-col-reverse items-stretch justify-center p-4 sm:p-6' : 'flex flex-col-reverse items-stretch justify-center p-4 sm:p-6 sm:flex-row';
+
 @endphp
 
 <div
-    {{ $attributes->merge(['class' => 'border border-gray-200  relative  mt-8  mt-3 w-full px-2 md:p-2.5 text-base text-left p-1  rounded-lg  font-normal shadow-sm hover:shadow-md']) }} class="{{ $vertical ? "":"first:mt-0" }}">
-
+    {{ $attributes->merge(['class' => $featuredClass.' relative  mt-8  mt-3 w-full px-2 md:p-2.5 text-base text-left p-1  rounded-lg  font-normal shadow-sm hover:shadow-md']) }} class="{{ $vertical ? "":" first:mt-0 " }}" >
     <div {{ $attributes->merge(['class' => $classes]) }}>
         <div class="basis-2/3 mt-2 relative leading-normal sm:mt-0 sm:pr-4">
             <div class="flex flex-row mt-3 mb-1 md:mt-0">
