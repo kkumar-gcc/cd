@@ -10,7 +10,7 @@ class TopBlogs extends Component
     public $blogs;
     public function mount()
     {
-        $this->blogs =Blog::select(['id', 'title','body','cover_image','created_at'])->published()->view()->limit(5)->get();
+        $this->blogs =Blog::select(['id', 'title','body','cover_image','slug','created_at'])->published()->view()->limit(5)->get();
     }
     public function render()
     {

@@ -4,13 +4,13 @@
             <span class="inline-block mb-5 time px-5 py-1 bg-skin-600 text-white text-xs font-bold uppercase">
                 {{ $key }}
             </span>
-            <div class="overflow-hidden py-1 grid gap-6 -z-[2]">
+            <div class="overflow-hidden py-1 grid gap-6 ">
                 @foreach ($blogs as $blog)
                     <div
                         class="relative before:content-[''] before:w-full before:h-[2px] before:-z-[0] before:bg-skin-600 before:absolute before:top-4 before:-left-[50%]">
                         <div
                             class="relative flex flex-col-reverse items-stretch justify-center md:flex-row ml-4 rounded-l-[2px] border border-l-[3px]  border-l-skin-600 rounded-r-lg shadow bg-white p-6 ">
-                            <div class="basis-2/3 mt-2 md:mt-0">
+                            <div class="flex-1 basis-2/3 mt-2 md:mt-0">
                                 <header>
                                     <time class="time px-5 py-1 bg-gray-100 text-xs font-bold uppercase text-black"
                                         datetime="2008-02-02">
@@ -29,7 +29,7 @@
                             </div>
                             <div
                                 class="basis-1/3 relative text-center min-h-fit {{ $blog->adult_warning ? 'prose prose-img:blur-lg' : '' }}">
-                                <img class="block relative w-full min-h-[192px]  rounded-xl  object-cover shadow-md hover:shadow-sm md:absolute md:top-0 md:left-0 md:min-h-full"
+                                <img class="block relative w-full h-full min-h-[192px]  rounded-xl  object-cover shadow-md hover:shadow-sm md:absolute md:top-0 md:left-0 md:min-h-full"
                                     src="{{ $blog->coverImage() }}" alt="">
                             </div>
                         </div>
