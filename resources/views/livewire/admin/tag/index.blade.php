@@ -168,6 +168,43 @@
                                 </div>
                                 <div class="mb-4">
                                     <label
+                                        class="text-base font-semibold line-clamp-3  tracking-wide  block mb-2  text-gray-700">Add
+                                        a cover image
+                                    </label>
+                                    <div class="flex flex-row mb-8 items-center">
+                                        <div class="">
+                                            @if ($coverImage)
+                                                <img src="{{ $coverImage->temporaryUrl() }}"
+                                                    class="max-h-56 max-w-[224px] bg-gray-50 "
+                                                    alt="cover image for {{ $title }}" />
+                                            @else
+                                                {{-- <img src="{{ $blog->coverImage() }}"
+                                                    class="max-h-56 max-w-[224px] bg-gray-50 "
+                                                    alt="cover image for {{ $blog->title }}" /> --}}
+                                            @endif
+                                        </div>
+                                        <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
+                                            x-on:livewire-upload-finish="isUploading = false"
+                                            x-on:livewire-upload-error="isUploading = false"
+                                            x-on:livewire-upload-progress="progress = $event.detail.progress"
+                                            class="flex-1 ml-8">
+                                            <!-- File Input -->
+                                            <input type="file" wire:model="coverImage" id="cover_image"
+                                                class="sr-only" />
+                                            <label
+                                                class="bg-skin-base  capatalize py-2 px-4 leading-6  border inline-flex flex-row justify-center items-center no-underline rounded-md font-semibold cursor-pointer transition duration-200 ease-in-out shadow-sm shadow-gray-100"
+                                                for="cover_image">
+                                                change
+                                            </label>
+                                            <div x-show="isUploading" class="mb-2">
+                                                <progress max="100" x-bind:value="progress"></progress>
+                                            </div>
+                                            <x-error class="text-red-500" field="coverImage" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label
                                         class="text-base font-semibold line-clamp-3  tracking-wide  block mb-2  text-gray-700"
                                         for="description">Description</label>
                                     <textarea id="description"
@@ -176,14 +213,13 @@
                                     <x-error field="description" class="text-rose-500" />
                                 </div>
                                 <div class="mb-4">
-                                    {{ $color }}
                                     <label
-                                        class="te"xt-base font-semibold line-clamp-3  tracking-wide  block mb-2  text-gray-700"
-                                        >Color</label>
+                                        class="text-base font-semibold line-clamp-3 tracking-wide block mb-2
+                                        text-gray-700">Color</label>
                                     <div class="py-8">
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-1" wire:model="color"
-                                                value="theme-none" class="hidden peer" ">
+                                                value="theme-none" class="hidden peer">
                                             <label for="demo-1"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-md">
                                                 <span
@@ -193,7 +229,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-2" wire:model="color"
-                                                value="theme-gray" class="hidden peer" >
+                                                value="theme-gray" class="hidden peer">
                                             <label for="demo-2"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -203,7 +239,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-3" wire:model="color"
-                                                value="theme-red" class="hidden peer" >
+                                                value="theme-red" class="hidden peer">
                                             <label for="demo-3"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -213,7 +249,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-4" wire:model="color"
-                                                value="hosting-small" class="hidden peer" >
+                                                value="hosting-small" class="hidden peer">
                                             <label for="demo-4"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -223,7 +259,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-5" wire:model="color"
-                                                value="theme-rose" class="hidden peer" >
+                                                value="theme-rose" class="hidden peer">
                                             <label for="demo-5"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -233,7 +269,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-6" wire:model="color"
-                                                value="theme-amber" class="hidden peer" >
+                                                value="theme-amber" class="hidden peer">
                                             <label for="demo-6"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -243,7 +279,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-8" wire:model="color"
-                                                value="theme-yellow" class="hidden peer" >
+                                                value="theme-yellow" class="hidden peer">
                                             <label for="demo-8"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -253,7 +289,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-9" wire:model="color"
-                                                value="theme-lime" class="hidden peer" >
+                                                value="theme-lime" class="hidden peer">
                                             <label for="demo-9"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -263,7 +299,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-10" wire:model="color"
-                                                value="theme-green" class="hidden peer" >
+                                                value="theme-green" class="hidden peer">
                                             <label for="demo-10"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -274,7 +310,7 @@
 
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-11" wire:model="color"
-                                                value="theme-emerald" class="hidden peer" >
+                                                value="theme-emerald" class="hidden peer">
                                             <label for="demo-11"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -303,7 +339,7 @@
                                         </div> --}}
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-14" wire:model="color"
-                                                value="theme-teal" class="hidden peer" >
+                                                value="theme-teal" class="hidden peer">
                                             <label for="demo-14"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -313,7 +349,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-15" wire:model="color"
-                                                value="theme-cyan" class="hidden peer" >
+                                                value="theme-cyan" class="hidden peer">
                                             <label for="demo-15"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -323,7 +359,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-16" wire:model="color"
-                                                value="theme-sky" class="hidden peer" >
+                                                value="theme-sky" class="hidden peer">
                                             <label for="demo-16"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -333,7 +369,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-17" wire:model="color"
-                                                value="theme-blue" class="hidden peer" >
+                                                value="theme-blue" class="hidden peer">
                                             <label for="demo-17"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -344,7 +380,7 @@
 
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-18" wire:model="color"
-                                                value="theme-indigo" class="hidden peer" >
+                                                value="theme-indigo" class="hidden peer">
                                             <label for="demo-18"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -354,7 +390,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-19" wire:model="color"
-                                                value="theme-violet" class="hidden peer" >
+                                                value="theme-violet" class="hidden peer">
                                             <label for="demo-19"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -364,7 +400,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-20" wire:model="color"
-                                                value="theme-purple" class="hidden peer" >
+                                                value="theme-purple" class="hidden peer">
                                             <label for="demo-20"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -374,7 +410,7 @@
                                         </div>
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-21" wire:model="color"
-                                                value="theme-fuchsia" class="hidden peer" >
+                                                value="theme-fuchsia" class="hidden peer">
                                             <label for="demo-21"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -385,7 +421,7 @@
 
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-22" wire:model="color"
-                                                value="theme-pink" class="hidden peer" >
+                                                value="theme-pink" class="hidden peer">
                                             <label for="demo-22"
                                                 class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
                                                 <span
@@ -423,7 +459,8 @@
                     <div x-on:click.stop="" x-trap.noscroll.inert="modal"
                         class="relative w-full max-w-2xl overflow-y-auto rounded-xl bg-skin-base p-12  shadow-2xl">
                         <header class="flex items-center ">
-                            <h5 class="text-3xl font-extrabold line-clamp-3  tracking-wide text-gray-700"></h5>
+                            <h5 class="text-3xl font-extrabold line-clamp-3  tracking-wide text-gray-700">
+                            </h5>
                             <div class="flex-1 flex justify-end">
                                 <x-buttons.primary @click="modal=false" class="hover:text-skin-600">
                                     <svg class="h-6 w-6" viewBox="0 0 456 512" xmlns="http://www.w3.org/2000/svg"
@@ -440,11 +477,13 @@
                             <form wire:submit.prevent="delete({{ $tag_id }})">
                                 @csrf
                                 @method('DELETE')
-                                <p class="text-base font-semibold">Are you sure that you want to delete <b
-                                        class="uppercase">{{ $title }}</b> tag?</p>
+                                <p class="text-base font-semibold">Are you sure
+                                    that you want to delete <b class="uppercase">{{ $title }}</b>
+                                    tag?</p>
                                 <x-buttons.danger type="submit" class="mt-6">{{ __('delete') }}
                                 </x-buttons.danger>
-                                <x-buttons.primary class="mt-6 ml-2">{{ __('cancel') }}
+                                <x-buttons.primary class="mt-6 ml-2">
+                                    {{ __('cancel') }}
                                 </x-buttons.primary>
                             </form>
                         </div>

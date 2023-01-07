@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 class Update extends Component
 {
     use WithFileUploads;
@@ -19,8 +21,8 @@ class Update extends Component
     public $coverImage;
     public $tags = [];
     public $search;
+    public $searchTags = [];
     protected $rules = [
-        'coverImage' => ['required', 'mimes:png,jpg,svg,gif', 'max:2048'],
         'title' => ['required', 'max:200', 'min:20'],
         'body' => ['required', 'min:20'],
         'tags' => ['required', 'array', 'min:1', 'max:5']
@@ -38,22 +40,23 @@ class Update extends Component
     {
         $this->authorize('view', $this->blog);
         if ($this->search != NULL) {
-            $this->searchTags = Tag::query()->where('title', 'LIKE', '%'.$this->search.'%')->take(5)->get();
-        }else{
-            $this->searchTags=[];
+            $this->searchTags = Tag::query()->where('title', 'LIKE', '%' . $this->search . '%')->take(5)->get();
+        } else {
+            $this->searchTags = [];
         }
         return view('livewire.blogs.update');
-
     }
     public function update()
     {
         $this->authorize('update', $this->blog);
         $this->validate();
-        $this->blog->update([
-            'title' => $this->title,
-            'body' => $this->body,
-            'cover_image'=> $this->coverImage->store('/','images')
-        ]);
+        $blog = Blog::find($this->blog->id);
+        $blog->title = $this->title;
+        $blog->body = $this->body;
+        if ($this->coverImage) {
+            $blog->cover_image = $this->coverImage->storeOnCloudinary()->getSecurePath();
+        }
+        $blog->save();
         $tagIds = [];
         foreach ($this->tags as $tag) {
             $tag = Tag::firstOrCreate(['title' => $tag]);
@@ -61,7 +64,7 @@ class Update extends Component
                 $tagIds[] = $tag->id;
             }
         };
-        $this->blog->tags()->sync($tagIds);
-        return redirect()->to('/blogs/'.$this->blog->slug);
+        $blog->tags()->sync($tagIds);
+        return redirect()->to('/blogs/' . $blog->slug);
     }
 }

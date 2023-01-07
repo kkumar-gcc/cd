@@ -28,25 +28,25 @@
         @csrf
         <div class="flex flex-col md:flex-row jus">
             <div class="my-4 md:mr-2 flex-1">
-                <label class="text-xl font-bold line-clamp-3  tracking-wide  block mb-2  text-gray-700"
+                <label class="text-xl font-semibold line-clamp-3  tracking-wide  block mb-2  text-gray-700"
                     for="name">Your name</label>
                 <x-form.input-field type="text" id="name" wire:model="name" placeholder="Name . . . ." />
                 <x-error field="name" class="text-rose-500" />
             </div>
             <div class="my-4 md:ml-2 flex-1">
-                <label class="text-xl font-bold line-clamp-3  tracking-wide  block mb-2  text-gray-700"
+                <label class="text-xl font-semibold line-clamp-3  tracking-wide  block mb-2  text-gray-700"
                     for="email">Your email</label>
                 <x-form.input-field type="email" id="email" wire:model="email" placeholder="email . . . ." />
                 <x-error field="email" class="text-rose-500" />
             </div>
         </div>
         <div class=" mb-5">
-            <label class="text-base font-semibold line-clamp-3  tracking-wide  block mb-2  text-gray-700"
+            <label class="text-xl font-semibold line-clamp-3  tracking-wide  block mb-2  text-gray-700"
                 for="message">Message</label>
             <textarea id="message" name="message"
                 class="border border-gray-300 text-gray-600 text-base font-semibold focus:shadow-md focus:ring-4 focus:ring-skin-500/20 focus:border-skin-600 block w-full p-3.5"
-                maxlength="200" rows="4" wire:model="shortBio" placeholder="Let tell us know your project about ..">{{ old('message') }}</textarea>
-            <x-error field="message" class="text-rose-500"/>
+                maxlength="200" rows="4" wire:model="body" placeholder="Let tell us know your project about ..">{{ old('message') }}</textarea>
+            <x-error field="body" class="text-rose-500"/>
         </div>
         <x-buttons.secondary type="submit">
             Just Send

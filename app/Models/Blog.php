@@ -17,7 +17,7 @@ use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class Blog extends Model
 {
-    use HasFactory, SoftDeletes,Search, Sluggable, HasSEO;
+    use HasFactory, SoftDeletes, Search, Sluggable, HasSEO;
     protected $fillable = [
         'user_id',
         'title',
@@ -73,10 +73,9 @@ class Blog extends Model
         $minutes = round(str_word_count($this->body()) / 200);
         return $minutes == 0 ? 1 : $minutes;
     }
-    public function coverImage(){
-        return $this->cover_image
-        ? Storage::disk('images')->url($this->cover_image)
-        : 'https://live.staticflickr.com/65535/52390100407_ac668fab12_h.jpg';
+    public function coverImage()
+    {
+        return $this->cover_image ?? 'https://live.staticflickr.com/65535/52390100407_ac668fab12_h.jpg';
     }
     public function user()
     {

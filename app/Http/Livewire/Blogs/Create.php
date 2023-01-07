@@ -10,7 +10,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 class Create extends Component
 {
     use WithFileUploads;
@@ -53,7 +53,7 @@ class Create extends Component
             'body' => $this->body,
             'published' => 1,
             'user_id' => auth()->id(),
-            'cover_image' => $this->coverImage->store('/', 'images')
+            'cover_image' => $this->coverImage->storeOnCloudinary()->getSecurePath()
         ]);
         $tagIds = [];
         foreach ($this->tags as $tag) {

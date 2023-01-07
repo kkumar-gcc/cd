@@ -62,9 +62,7 @@ class Tag extends Model
     ];
     public function coverImage()
     {
-        return $this->cover_image
-            ? Storage::disk('images')->url($this->cover_image)
-            : 'https://miro.medium.com/max/1000/1*xRj13VgftcCYP2ppVFmGTw.png';
+        return $this->cover_image ?? 'https://miro.medium.com/max/1000/1*xRj13VgftcCYP2ppVFmGTw.png';
     }
     public function sluggable(): array
     {

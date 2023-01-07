@@ -36,8 +36,6 @@ class EditProfile extends Component
         return view('livewire.profile.edit-profile');
     }
     protected $rules = [
-        "profileImage" => 'sometimes|mimes:png,jpg,jpeg,gif,svg|max:2048',
-        "backgroundImage" => 'sometimes|mimes:png,jpg,jpeg,gif,svg|max:2048',
         "username" => 'required',
         "shortBio" => "required|min:20|max:300"
     ];
@@ -46,10 +44,10 @@ class EditProfile extends Component
         $this->validate();
         $user = User::find(auth()->user()->id);
         if ($this->profileImage) {
-            $user->profile_image = $this->profileImage->store('/','images');
+            $user->profile_image = $this->profileImage->storeOnCloudinary()->getSecurePath();
         }
         if ($this->backgroundImage) {
-            $user->background_image = $this->backgroundImage->store('/','images');
+            $user->background_image = $this->backgroundImage->storeOnCloudinary()->getSecurePath();
         }
         $user->name = $this->name;
         $user->first_name = $this->firstName;

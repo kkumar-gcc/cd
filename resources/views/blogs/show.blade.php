@@ -3,7 +3,7 @@
         class="relative my-10 prose max-w-none lg:max-w-full xl:max-w-none prose-img:rounded-xl prose-img:w-full mx-auto  prose-a:no-underline  dark:prose-invert prose-a:text-skin-600 dark:prose-a:text-skin-500 prose-table px-2">
 
         <div class="relative  pt-[60%] rounded-xl sm:pt-[50%] md:pt-[42%] ">
-            <img class="absolute top-0 bottom-0 left-0 right-0 w-full h-full m-0 bg-skin-base shadow-md object-fit rounded-xl drop-shadow-md dark:bg-gray-800"
+            <img class="absolute top-0 bottom-0 left-0 right-0 w-full h-full m-0 bg-skin-base shadow hover:shadow-md object-fit rounded-xl dark:bg-gray-800"
                 src="{{ $blog->coverImage() }}" alt="Cover image for {{ $blog->title }}" />
         </div>
 
@@ -55,6 +55,15 @@
                         </x-dropdown>
                     </div>
                 @endcan
+                {{-- table of contents --}}
+                <div>
+                    <h5 class="text-2xl font-semibold text-gray-700">
+                        Table of Contents
+                    </h5>
+                    <div class="px-4 py-2 text-gray-700">
+                        <x-toc>{!! $blog->body() !!}</x-toc>
+                    </div>
+                </div>
                 <div class={{ $blog->adult_warning ? 'prose-img:blur-lg' : '' }}>
                     @if ($blog->access == 'follower')
                         @guest
@@ -125,15 +134,6 @@
                     <div
                         class="px-4 py-3 text-gray-700 border-t border-gray-200 last:rounded-b-lg dark:text-gray-400 dark:hover:text-white dark:border-gray-700  hover:shadow dark:bg-gray-800 dark:hover:bg-gray-700">
                         <x-share :share="$shareBlog" />
-                    </div>
-                </x-cards.primary-card>
-                <x-cards.primary-card :default=false>
-                    <header class="px-4 py-3 text-2xl font-semibold text-gray-700 dark:text-white">
-                        Table of Contents
-                    </header>
-                    <div
-                        class="px-4 py-3 text-gray-700 border-t border-gray-200 last:rounded-b-lg dark:text-gray-400 dark:hover:text-white dark:border-gray-700  hover:shadow dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <x-toc>{!! $blog->body() !!}</x-toc>
                     </div>
                 </x-cards.primary-card>
 

@@ -134,33 +134,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(BlogPin::class);
     }
-
-
-    // public function followings()
-    // {
-    //     return $this->belongsToMany(User::class, 'friendships', 'follower_id', 'following_id');
-    // }
-    // users that follow this user
-    // public function followers()
-    // {
-    //     return $this->belongsToMany(User::class, 'friendships', 'following_id', 'follower_id');
-    // }
-    // public function isFollowing()
-    // {
-    //     return $this->followers()->where('follower_id', '=', auth()->user()->id)->exists();
-    // }
-
     public function backgroundImage(): string
     {
-        return $this->background_image
-            ? Storage::disk('images')->url($this->background_image)
-            : 'https://live.staticflickr.com/65535/52391254003_99ade44739_h.jpg';
+        return $this->background_image ?? 'https://live.staticflickr.com/65535/52391254003_99ade44739_h.jpg';
     }
     public function avatarUrl(): string
     {
-        return $this->profile_image
-            ? Storage::disk('images')->url($this->profile_image)
-            : 'https://www.gravatar.com/avatar/' . md5(Str::lower(trim('krishkumar9352@gmail.com')));
+        return $this->profile_image ?? 'https://www.gravatar.com/avatar/' . md5(Str::lower(trim('krishkumar9352@gmail.com')));
     }
 
     public function getDynamicSEOData(): SEOData
