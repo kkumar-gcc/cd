@@ -44,21 +44,27 @@
 
         </div> --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 pt-4" id="tag-show">
-
             @foreach ($tags as $tag)
-                <x-cards.primary-card :default=false class="mt-0">
-                    <header class="px-4 py-3 text-2xl font-semibold text-gray-700 dark:text-white">
+                <x-cards.primary-card :default=false class="mt-0 px-4 py-3">
+                    <div class="basis-1/3 relative text-center min-h-fit">
+                        <img class="block relative w-full rounded-xl  object-cover shadow-md hover:shadow-sm min-h-[150px]  mb-2"
+                            src="{{ $tag->coverImage() }}" alt="">
+                    </div>
+                    <div class="flex-1 flex flex-row items-center">
+                        <div class="mr-2 text-sm">
+                            {{ $tag->blogs_count }} blogs
+                        </div>
+                    </div>
+                    <div class="text-2xl font-semibold text-gray-700 dark:text-white">
                         <x-tag :tag=$tag id="tag-{{ $tag->id }}" class="not-prose" />
-                    </header>
-                    <div class="px-4 py-3 text-gray-700 last:rounded-b-lg ">
+                    </div>
+                    <div class="text-gray-700 last:rounded-b-lg line-clamp-3">
                         @if ($tag->description())
                             <p class="mb-3">{{ $tag->description() }}</p>
                         @endif
-                        <span class="text-muted">{{ $tag->blogs_count }} blogs</span>
                     </div>
                 </x-cards.primary-card>
             @endforeach
-
         </div>
         <div class="row" id="new-tag-show"></div>
         <div id="tag-paginator">
@@ -66,6 +72,8 @@
         </div>
     </div>
 </x-app-layout>
+
+
 {{-- <div class="p-8">
     <span
         class="inline-flex py-1 px-2 mx-[5px] mt-3 text-[10px] font-bold tracking-wide border rounded-[4px] shadow-sm  uppercase ">

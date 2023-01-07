@@ -44,6 +44,7 @@
                                 </span>
                             @endforeach
                         </div>
+                        <x-toc>{!! $body !!}</x-toc>
                         <div class="my-5">
                             <h1 class="text-3xl my-55 md:text-4xl lg:text-5xl dark:text-white">
                                 {{ $title }}

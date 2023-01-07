@@ -31,33 +31,6 @@
                 </div>
             </header>
         </section>
-        <h5>Reputations</h5>
-        @foreach ($user->reputations as $reputation)
-            {{-- // name of the point type --}}
-            {{ $reputation->name }}
-
-            {{-- // payee user --}}
-            {{ $reputation->payee->username}}
-
-            {{-- // how many points --}}
-            {{ $reputation->point }}
-
-            {{-- // model on which point was given --}}
-            {{ $reputation->subject->title }}
-        @endforeach
-        @foreach ($user->badges as $badge)
-            {{-- // name of the point type --}}
-            {{ $badge->name }}
-
-            {{-- // payee user --}}
-            {{ $badge->description}}
-
-            {{-- // how many points --}}
-            {{ $reputation->level }}
-
-            {{-- // model on which point was given --}}
-            {{ $reputation->icon }}
-        @endforeach
         <div class="relative flex flex-col w-full mt-3 lg:flex-row ">
             <aside class="basis-1/4 not-prose" aria-label="Sidebar">
                 <div id="sticky-sidebar" class="hidden py-4 overflow-y-auto rounded lg:block">

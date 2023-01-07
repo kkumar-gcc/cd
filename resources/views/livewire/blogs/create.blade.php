@@ -37,10 +37,20 @@
                                     src="{{ $coverImage->temporaryUrl() }}" alt="" />
                             </div>
                         @endif
+                        <div class="not-prose my-5">
+                            @foreach ($tags as $tag)
+                                <span
+                                    class="inline-flex py-1 px-2 mb-2 mx-[5px] text-[10px] leading-4 first:ml-0 font-bold tracking-wide border rounded-[4px] shadow-sm border-rose-200 uppercase  bg-rose-100 text-rose-600 before:content-['#'] before:mr-0.5 ">
+                                    {{ $tag }}
+                                </span>
+                            @endforeach
+                        </div>
+                        <x-toc>{!! $body !!}</x-toc>
                         <div class="my-5">
                             <h1 class="text-3xl my-55 md:text-4xl lg:text-5xl dark:text-white">
                                 {{ $title }}
                             </h1>
+
                             <article class="w-full my-5" id="preview-body">
                                 <x-markdown flavor="github">
                                     {!! $body !!}
@@ -74,8 +84,7 @@
                             <div class="">
                                 @if ($coverImage)
                                     <img src="{{ $coverImage->temporaryUrl() }}"
-                                        class="max-h-56 max-w-[224px] bg-gray-50 mr-8"
-                                        alt="" />
+                                        class="max-h-56 max-w-[224px] bg-gray-50 mr-8" alt="" />
                                 @endif
                             </div>
                             <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"

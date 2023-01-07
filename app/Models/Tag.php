@@ -6,13 +6,15 @@ use App\Traits\Search;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Support\Facades\Storage;
+
 class Tag extends Model
 {
     use HasFactory;
     use Search;
     use Sluggable;
     // use HasSlu;
-    
+
     public function title(): string
     {
         return $this->title;
@@ -21,7 +23,7 @@ class Tag extends Model
     {
         return $this->description;
     }
-    public function styleColor() : string
+    public function styleColor(): string
     {
         return $this->color;
     }
@@ -48,6 +50,7 @@ class Tag extends Model
     protected $fillable = [
         'title',
         'description',
+        'cover_image',
         'color',
         'user_id',
         'slug'
@@ -57,6 +60,12 @@ class Tag extends Model
         'description',
         'slug'
     ];
+    public function coverImage()
+    {
+        return $this->cover_image
+            ? Storage::disk('images')->url($this->cover_image)
+            : 'https://miro.medium.com/max/1000/1*xRj13VgftcCYP2ppVFmGTw.png';
+    }
     public function sluggable(): array
     {
         return [
