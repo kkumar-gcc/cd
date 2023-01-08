@@ -27,7 +27,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'email',
         'username',
-        'name',
         'first_name',
         'last_name',
         'password',
@@ -147,7 +146,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return new SEOData(
             title: $this->username,
+            image: $this->avatarUrl(),
             description: $this->shortBio(),
+            author: $this->username,
         );
     }
 }

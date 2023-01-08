@@ -7,12 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Support\Facades\Storage;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class Tag extends Model
 {
     use HasFactory;
     use Search;
     use Sluggable;
+    use HasSEO;
     // use HasSlu;
 
     public function title(): string
@@ -71,5 +74,13 @@ class Tag extends Model
                 'source' => 'title'
             ]
         ];
+    }
+    public function getDynamicSEOData(): SEOData
+    {
+        return new SEOData(
+            title: $this->title,
+            image: $this->coverImage(),
+            description: $this->description(),
+        );
     }
 }

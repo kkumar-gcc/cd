@@ -16,14 +16,23 @@ class TagSeeder extends Seeder
     public function run()
     {
         $tags = [
-            'sports' => 'primary', // blue
-            'relaxation' => 'secondary', // grey
-            'fun' => 'warning', // yellow
-            'nature' => 'success', // green
-            'inspiration' => 'light', // white grey
-            'friends' => 'info', // turquoise
-            'love' => 'danger', // red
-            'interest' => 'dark' // black-white
+            'javascript' => 'theme-rose',
+            'python' => 'theme-rose',
+            'java' => 'theme-rose',
+            'c#' => 'theme-rose',
+            'php' => 'theme-rose',
+            'android' => 'theme-rose',
+            'html' => 'theme-rose',
+            'jquery' => 'theme-rose',
+            'laravel' => 'theme-rose',
+            'c++' => 'theme-rose',
+            'css' => 'theme-rose',
+            'ios' => 'theme-rose',
+            'mysql' => 'theme-rose',
+            'sql' => 'theme-rose',
+            'node.js' => 'theme-rose',
+            'reactjs' => 'theme-rose',
+            'arrays' => 'theme-rose'
         ];
 
         foreach ($tags as $key => $value) {

@@ -41,7 +41,7 @@ class BlogPolicy
         }
 
         // admin overrides published status
-        if ($user->can('view unpublished posts')) {
+        if ($user->can('view unpublished blogs')) {
             return true;
         }
 
@@ -74,7 +74,7 @@ class BlogPolicy
         if ($user->can('edit all blogs')) {
             return true;
         }
-        
+
         if ($user->can('edit own blogs')) {
             return $user->id == $blog->user_id;
         }

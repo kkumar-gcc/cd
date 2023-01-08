@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
                     ]
                 )
                     ->each(function ($blog) {
-                        $tag_ids = range(1, 8);
+                        $tag_ids = range(1, 17);
                         shuffle($tag_ids);
                         $assignments = array_slice($tag_ids, 0, rand(1, 5));
                         foreach ($assignments as $tag_id) {

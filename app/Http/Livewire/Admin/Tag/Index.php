@@ -57,6 +57,7 @@ class Index extends Component
         if ($this->coverImage) {
             $tag->cover_image = $this->coverImage->storeOnCloudinary()->getSecurePath();
         }
+        $tag->color=$this->color;
         $tag->save();
         $this->reset(['title', 'tag_id', 'color', 'description', 'coverImage']);
         $this->emit('closeModal');

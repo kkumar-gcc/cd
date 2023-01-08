@@ -18,7 +18,6 @@ return new class extends Migration
             $table->uuid('uuid')->nullable()->unique();
             $table->string('email')->unique();
             $table->string('username')->unique();
-            $table->string('name')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->text('about_me')->nullable();

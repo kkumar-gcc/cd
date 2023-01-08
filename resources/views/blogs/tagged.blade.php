@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :page="$searchTag">
     <x-slot name="sidebar">
         <x-sidebar />
     </x-slot>

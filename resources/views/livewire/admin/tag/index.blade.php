@@ -248,16 +248,6 @@
                                             </label>
                                         </div>
                                         <div class="inline-flex">
-                                            <input type="radio" id="demo-4" wire:model="color"
-                                                value="hosting-small" class="hidden peer">
-                                            <label for="demo-4"
-                                                class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
-                                                <span
-                                                    class="inline-flex py-1 px-2 mx-[5px]  text-[10px] font-bold tracking-wide border rounded-[4px] shadow-sm border-orange-200 uppercase  bg-orange-100 text-orange-600">
-                                                    #demo</span>
-                                            </label>
-                                        </div>
-                                        <div class="inline-flex">
                                             <input type="radio" id="demo-5" wire:model="color"
                                                 value="theme-rose" class="hidden peer">
                                             <label for="demo-5"
@@ -307,36 +297,6 @@
                                                     #demo</span>
                                             </label>
                                         </div>
-
-                                        <div class="inline-flex">
-                                            <input type="radio" id="demo-11" wire:model="color"
-                                                value="theme-emerald" class="hidden peer">
-                                            <label for="demo-11"
-                                                class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
-                                                <span
-                                                    class="inline-flex py-1 px-2 mx-[5px]  text-[10px] font-bold tracking-wide border rounded-[4px] shadow-sm border-emerald-200 uppercase  bg-emerald-100 text-emerald-600">
-                                                    #demo</span>
-                                            </label>
-                                        </div>
-                                        {{-- <div class="inline-flex">
-                                            <input type="radio" id="demo-12" wire:model="color"
-                                                value="hosting-small" class="hidden peer" >
-                                            <label for="demo-12"
-                                                class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
-                                                <span
-                                                    class="inline-flex py-1 px-2 mx-[5px]  text-[10px] font-bold tracking-wide border rounded-[4px] shadow-sm border-emerald-200 uppercase  bg-emerald-100 text-emerald-600">
-                                                    #demo</span>
-                                        </div>
-                                        <div class="inline-flex">
-                                            <input type="radio" id="demo-13" wire:model="color"
-                                                value="hosting-small" class="hidden peer" >
-                                            <label for="demo-13"
-                                                class="inline-flex justify-between items-center p-3 w-full  bg-skin-base rounded-sm border border-transparent cursor-pointer   peer-checked:border-black peer-checked:shadow-sm">
-                                                <span
-                                                    class="inline-flex py-1 px-2 mx-[5px]  text-[10px] font-bold tracking-wide border rounded-[4px] shadow-sm border-emerald-200 uppercase  bg-emerald-100 text-emerald-600">
-                                                    #demo</span>
-                                            </label>
-                                        </div> --}}
                                         <div class="inline-flex">
                                             <input type="radio" id="demo-14" wire:model="color"
                                                 value="theme-teal" class="hidden peer">
