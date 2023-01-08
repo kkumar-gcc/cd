@@ -90,23 +90,25 @@
                             <div class="w-full mt-2">
                                 <label class="inline-flex items-center cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4" wire:model="age_confirmation" />
-                                    <span class="ml-2">Show warning to blog readers</span>
+                                    <span class="ml-2">Ask age confirmation to blog readers</span>
                                 </label>
                             </div>
                         </div>
                     </div>
-                    <div class="mb-6">
-                        <label for="general_comment"
-                            class="text-xl font-semibold line-clamp-3  tracking-wide  block mb-4  text-gray-700">Other</label>
-                        <div class="">
-                            <div class="w-full mt-2">
-                                <label class="inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4" wire:model="featured" />
-                                    <span class="ml-2">Featured</span>
-                                </label>
+                    @if (auth()->user()->can('edit all blogs'))
+                        <div class="mb-6">
+                            <label for="general_comment"
+                                class="text-xl font-semibold line-clamp-3  tracking-wide  block mb-4  text-gray-700">Other</label>
+                            <div class="">
+                                <div class="w-full mt-2">
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="w-4 h-4" wire:model="featured" />
+                                        <span class="ml-2">Featured</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                     <x-buttons.secondary type="submit">Save</x-buttons.secondary>
                 </form>
             </div>

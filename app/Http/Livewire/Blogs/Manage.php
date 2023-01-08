@@ -41,6 +41,9 @@ class Manage extends Component
         $this->blog->comment_access = $this->comment_access;
         $this->blog->adult_warning = $this->adult_warning;
         $this->blog->age_confirmation = $this->age_confirmation;
+        if(auth()->user()->can('edit all blogs')){
+            $this->blog->featured=$this->featured;
+        }
         $this->blog->featured=$this->featured;
         $saved = $this->blog->save();
         if ($saved) {
