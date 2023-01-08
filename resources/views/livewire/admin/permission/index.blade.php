@@ -200,7 +200,7 @@
                                         class="uppercase">{{ $name }}</b> permission?</p>
                                 <x-buttons.danger type="submit" class="mt-6">{{ __('delete') }}
                                 </x-buttons.danger>
-                                <x-buttons.primary class="mt-6 ml-2">{{ __('cancel') }}
+                                <x-buttons.primary class="mt-6 ml-2" @click="modal=false">{{ __('cancel') }}
                                 </x-buttons.primary>
                             </form>
                         </div>

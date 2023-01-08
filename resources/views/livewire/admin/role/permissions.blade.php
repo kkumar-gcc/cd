@@ -64,7 +64,7 @@
                                 @endif
                             </div>
                         </div>
-                        <x-buttons.primary class="mt-8">{{ __('Close') }}
+                        <x-buttons.primary class="mt-8" @click="modal=false">{{ __('Close') }}
                         </x-buttons.primary>
                     </div>
                 </div>

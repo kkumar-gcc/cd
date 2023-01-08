@@ -10,7 +10,6 @@ class EditProfile extends Component
 {
     use WithFileUploads;
     public $username;
-    public $name;
     public $location;
     public $firstName;
     public $lastName;
@@ -23,7 +22,6 @@ class EditProfile extends Component
     {
         $user = auth()->user();
         $this->username = $user->username();
-        $this->name = $user->name;
         $this->location = $user->location;
         $this->firstName = $user->firstName();
         $this->lastName = $user->lastName();
@@ -49,7 +47,6 @@ class EditProfile extends Component
         if ($this->backgroundImage) {
             $user->background_image = $this->backgroundImage->storeOnCloudinary()->getSecurePath();
         }
-        $user->name = $this->name;
         $user->first_name = $this->firstName;
         $user->last_name = $this->lastName;
         $user->about_me = $this->aboutMe;

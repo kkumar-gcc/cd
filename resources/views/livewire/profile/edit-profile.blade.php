@@ -107,12 +107,6 @@
                 </div>
                 <div class=" mb-4">
                     <label class="text-base font-semibold line-clamp-3  tracking-wide  block mb-2  text-gray-700"
-                        for="name">Name</label>
-                    <x-form.input-field type="text" id="name" wire:model="name" />
-                    <x-error field="name" />
-                </div>
-                <div class=" mb-4">
-                    <label class="text-base font-semibold line-clamp-3  tracking-wide  block mb-2  text-gray-700"
                         for="location">location</label>
                     <x-form.input-field type="text" id="location" wire:model="location" />
                     <x-error field="location" />

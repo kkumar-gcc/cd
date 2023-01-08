@@ -50,11 +50,7 @@ class BlogController extends Controller
         $blog = Blog::where("slug", $slug)->first();
         $this->authorize('view', $blog);
         if ($blog) {
-            $shareBlog =  ShareFacade::page(
-                URL::current(),
-                $blog->title,
-            )
-                ->facebook()
+            $shareBlog =  ShareFacade::currentPage()->facebook()
                 ->twitter()
                 ->linkedin()
                 ->telegram()
