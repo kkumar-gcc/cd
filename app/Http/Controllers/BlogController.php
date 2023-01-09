@@ -65,19 +65,8 @@ class BlogController extends Controller
                 $newView->save();
             }
 
-            $related = Blog::published()
-                ->with(['user', 'tags', 'blogviews'])
-                ->whereHas('tags', function ($query) use ($blog) {
-                    $query->whereIn('title', $blog->tags->pluck('title'));
-                }, '>=', count($blog->tags->pluck('title')))
-                ->where("id", "!=", $blog->id)
-                ->limit(5)
-                ->withCount('tags')
-                ->get();
-
             return view("blogs.show")->with([
                 "blog" => $blog,
-                "related" => $related,
                 "shareBlog" => $shareBlog,
             ]);
         }

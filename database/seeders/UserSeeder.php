@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(20)->create()
+        User::factory()->count(5)->create()
             ->each(function ($user) {
                 Fun::factory()->count(rand(1, 4))->create(
                     [
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
                                 ]);
                         }
                     });
-                Blog::factory()->count(rand(1, 4))->create(
+                Blog::factory()->count(rand(1, 5))->create(
                     [
                         "user_id" => $user->id,
                     ]
